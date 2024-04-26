@@ -3,13 +3,28 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/node"
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
     }
   ],
   "routes": [
     {
+      "src": "/(.*).js",
+      "headers": { "content-type": "text/javascript" },
+      "dest": "/$1.js"
+    },
+    {
+      "src": "/(.*).css",
+      "headers": { "content-type": "text/css" },
+      "dest": "/$1.css"
+    },
+    {
+      "src": "/(.*).(jpg|png|ico|svg)",
+      "dest": "/$1.$2"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/index.html"
     }
   ]
 }

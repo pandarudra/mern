@@ -6,15 +6,15 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import User from "./modules/userschema.js";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
+// import { fileURLToPath } from "url";
+// import { dirname } from "path";
 dotenv.config();
 const PORT = process.env.PORT;
 const DB_URL = process.env.URI;
 app.use(cors());
 app.use(express.json());
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -25,10 +25,10 @@ const transporter = nodemailer.createTransport({
     pass: process.env.SMTP_PASS,
   },
 });
-app.use(express.static(path.join(__dirname, "frontend", "dist")));
+// app.use(express.static(path.join(__dirname, "frontend", "dist")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+  // res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
 });
 app.get("/search", async (req, res) => {
   const value = await User.findOne({ name: req.query.name });
